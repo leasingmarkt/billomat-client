@@ -5,6 +5,7 @@ namespace Phobetor\Billomat\Client;
 use GuzzleHttp\Client;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\Guzzle\Description;
+use GuzzleHttp\Command\Result;
 use GuzzleHttp\Command\ResultInterface;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
@@ -17,161 +18,161 @@ use Psr\Http\Message\ResponseInterface;
  * Billomat client to interact with Billomat REST API
  *
  * CLIENT RELATED METHODS:
- * @method array getClients(array $args = []) {@command Billomat GetClients}
- * @method array getClient(array $args = []) {@command Billomat GetClient}
- * @method array getClientMyself(array $args = []) {@command Billomat GetClientMyself}
- * @method array createClient(array $args = []) {@command Billomat CreateClient}
- * @method array updateClient(array $args = []) {@command Billomat UpdateClient}
+ * @method Result getClients(array $args = []) {@command Billomat GetClients}
+ * @method Result getClient(array $args = []) {@command Billomat GetClient}
+ * @method Result getClientMyself(array $args = []) {@command Billomat GetClientMyself}
+ * @method Result createClient(array $args = []) {@command Billomat CreateClient}
+ * @method Result updateClient(array $args = []) {@command Billomat UpdateClient}
  * @method void deleteClient(array $args = []) {@command Billomat DeleteClient}
  *
  * CLIENT PROPERTY VALUE RELATED METHODS:
- * @method array getClientPropertyValues(array $args = []) {@command Billomat GetClientPropertyValues}
- * @method array getClientPropertyValue(array $args = []) {@command Billomat GetClientPropertyValue}
- * @method array setClientPropertyValue(array $args = []) {@command Billomat SetClientPropertyValue}
+ * @method Result getClientPropertyValues(array $args = []) {@command Billomat GetClientPropertyValues}
+ * @method Result getClientPropertyValue(array $args = []) {@command Billomat GetClientPropertyValue}
+ * @method Result setClientPropertyValue(array $args = []) {@command Billomat SetClientPropertyValue}
  *
  * ARTICLE RELATED METHODS:
- * @method array getArticles(array $args = []) {@command Billomat GetArticles}
- * @method array getArticle(array $args = []) {@command Billomat GetArticle}
- * @method array createArticle(array $args = []) {@command Billomat CreateArticle}
- * @method array updateArticle(array $args = []) {@command Billomat UpdateArticle}
+ * @method Result getArticles(array $args = []) {@command Billomat GetArticles}
+ * @method Result getArticle(array $args = []) {@command Billomat GetArticle}
+ * @method Result createArticle(array $args = []) {@command Billomat CreateArticle}
+ * @method Result updateArticle(array $args = []) {@command Billomat UpdateArticle}
  * @method void deleteArticle(array $args = []) {@command Billomat DeleteArticle}
  *
  * ARTICLE PROPERTY VALUE RELATED METHODS:
- * @method array getArticlePropertyValues(array $args = []) {@command Billomat GetArticlePropertyValues}
- * @method array getArticlePropertyValue(array $args = []) {@command Billomat GetArticlePropertyValue}
- * @method array setArticlePropertyValue(array $args = []) {@command Billomat SetArticlePropertyValue}
+ * @method Result getArticlePropertyValues(array $args = []) {@command Billomat GetArticlePropertyValues}
+ * @method Result getArticlePropertyValue(array $args = []) {@command Billomat GetArticlePropertyValue}
+ * @method Result setArticlePropertyValue(array $args = []) {@command Billomat SetArticlePropertyValue}
  *
  * INVOICE RELATED METHODS:
- * @method array getInvoices(array $args = []) {@command Billomat GetInvoices}
- * @method array getInvoice(array $args = []) {@command Billomat GetInvoice}
- * @method array createInvoice(array $args = []) {@command Billomat CreateInvoice}
- * @method array updateInvoice(array $args = []) {@command Billomat UpdateInvoice}
- * @method array completeInvoice(array $args = []) {@command Billomat CompleteInvoice}
+ * @method Result getInvoices(array $args = []) {@command Billomat GetInvoices}
+ * @method Result getInvoice(array $args = []) {@command Billomat GetInvoice}
+ * @method Result createInvoice(array $args = []) {@command Billomat CreateInvoice}
+ * @method Result updateInvoice(array $args = []) {@command Billomat UpdateInvoice}
+ * @method Result completeInvoice(array $args = []) {@command Billomat CompleteInvoice}
  * @method \Guzzle\Http\Message\Response getInvoicePdf(array $args = []) {@command Billomat GetInvoicePdf}
- * @method array signInvoice(array $args = []) {@command Billomat SignInvoice}
- * @method array sendInvoiceEmail(array $args = []) {@command Billomat SendInvoiceEmail}
- * @method array cancelInvoice(array $args = []) {@command Billomat CancelInvoice}
- * @method array undoCancelInvoice(array $args = []) {@command Billomat UndoCancelInvoice}
+ * @method Result signInvoice(array $args = []) {@command Billomat SignInvoice}
+ * @method Result sendInvoiceEmail(array $args = []) {@command Billomat SendInvoiceEmail}
+ * @method Result cancelInvoice(array $args = []) {@command Billomat CancelInvoice}
+ * @method Result undoCancelInvoice(array $args = []) {@command Billomat UndoCancelInvoice}
  * @method void deleteInvoice(array $args = []) {@command Billomat DeleteInvoice}
  *
  * INVOICE ITEM RELATED METHODS:
- * @method array getInvoiceItems(array $args = []) {@command Billomat GetInvoiceItems}
- * @method array getInvoiceItem(array $args = []) {@command Billomat GetInvoiceItem}
- * @method array createInvoiceItem(array $args = []) {@command Billomat CreateInvoiceItem}
- * @method array updateInvoiceItem(array $args = []) {@command Billomat UpdateInvoiceItem}
+ * @method Result getInvoiceItems(array $args = []) {@command Billomat GetInvoiceItems}
+ * @method Result getInvoiceItem(array $args = []) {@command Billomat GetInvoiceItem}
+ * @method Result createInvoiceItem(array $args = []) {@command Billomat CreateInvoiceItem}
+ * @method Result updateInvoiceItem(array $args = []) {@command Billomat UpdateInvoiceItem}
  * @method void deleteInvoiceItem(array $args = []) {@command Billomat DeleteInvoiceItem}
  *
  * INVOICE TAG RELATED METHODS:
- * @method array getInvoiceTagCloud(array $args = []) {@command Billomat GetInvoiceTagCloud}
- * @method array getInvoiceTags(array $args = []) {@command Billomat GetInvoiceTags}
- * @method array getInvoiceTag(array $args = []) {@command Billomat GetInvoiceTag}
- * @method array createInvoiceTag(array $args = []) {@command Billomat CreateInvoiceTag}
- * @method array deleteInvoiceTag(array $args = []) {@command Billomat DeleteInvoiceTag}
+ * @method Result getInvoiceTagCloud(array $args = []) {@command Billomat GetInvoiceTagCloud}
+ * @method Result getInvoiceTags(array $args = []) {@command Billomat GetInvoiceTags}
+ * @method Result getInvoiceTag(array $args = []) {@command Billomat GetInvoiceTag}
+ * @method Result createInvoiceTag(array $args = []) {@command Billomat CreateInvoiceTag}
+ * @method Result deleteInvoiceTag(array $args = []) {@command Billomat DeleteInvoiceTag}
  *
  * INVOICE PAYMENT RELATED METHODS:
- * @method array getInvoicePayments(array $args = []) {@command Billomat GetInvoicePayments}
- * @method array getInvoicePayment(array $args = []) {@command Billomat GetInvoicePayment}
- * @method array createInvoicePayment(array $args = []) {@command Billomat CreateInvoicePayment}
- * @method array deleteInvoicePayment(array $args = []) {@command Billomat DeleteInvoicePayment}
+ * @method Result getInvoicePayments(array $args = []) {@command Billomat GetInvoicePayments}
+ * @method Result getInvoicePayment(array $args = []) {@command Billomat GetInvoicePayment}
+ * @method Result createInvoicePayment(array $args = []) {@command Billomat CreateInvoicePayment}
+ * @method Result deleteInvoicePayment(array $args = []) {@command Billomat DeleteInvoicePayment}
  *
  * CREDIT NOTE RELATED METHODS:
- * @method array getCreditNotes(array $args = []) {@command Billomat GetCreditNotes}
- * @method array getCreditNote(array $args = []) {@command Billomat GetCreditNote}
- * @method array createCreditNote(array $args = []) {@command Billomat CreateCreditNote}
- * @method array updateCreditNote(array $args = []) {@command Billomat UpdateCreditNote}
- * @method array completeCreditNote(array $args = []) {@command Billomat CompleteCreditNote}
+ * @method Result getCreditNotes(array $args = []) {@command Billomat GetCreditNotes}
+ * @method Result getCreditNote(array $args = []) {@command Billomat GetCreditNote}
+ * @method Result createCreditNote(array $args = []) {@command Billomat CreateCreditNote}
+ * @method Result updateCreditNote(array $args = []) {@command Billomat UpdateCreditNote}
+ * @method Result completeCreditNote(array $args = []) {@command Billomat CompleteCreditNote}
  * @method \Guzzle\Http\Message\Response getCreditNotePdf(array $args = []) {@command Billomat GetCreditNotePdf}
- * @method array signCreditNote(array $args = []) {@command Billomat SignCreditNote}
- * @method array sendCreditNoteEmail(array $args = []) {@command Billomat SendCreditNoteEmail}
+ * @method Result signCreditNote(array $args = []) {@command Billomat SignCreditNote}
+ * @method Result sendCreditNoteEmail(array $args = []) {@command Billomat SendCreditNoteEmail}
  * @method void deleteCreditNote(array $args = []) {@command Billomat DeleteCreditNote}
  *
  * CREDIT NOTE ITEM RELATED METHODS:
- * @method array getCreditNoteItems(array $args = []) {@command Billomat GetCreditNoteItems}
- * @method array getCreditNoteItem(array $args = []) {@command Billomat GetCreditNoteItem}
- * @method array createCreditNoteItem(array $args = []) {@command Billomat CreateCreditNoteItem}
- * @method array updateCreditNoteItem(array $args = []) {@command Billomat UpdateCreditNoteItem}
+ * @method Result getCreditNoteItems(array $args = []) {@command Billomat GetCreditNoteItems}
+ * @method Result getCreditNoteItem(array $args = []) {@command Billomat GetCreditNoteItem}
+ * @method Result createCreditNoteItem(array $args = []) {@command Billomat CreateCreditNoteItem}
+ * @method Result updateCreditNoteItem(array $args = []) {@command Billomat UpdateCreditNoteItem}
  * @method void deleteCreditNoteItem(array $args = []) {@command Billomat DeleteCreditNoteItem}
  *
  * CREDIT NOTE PAYMENT RELATED METHODS:
- * @method array getCreditNotePayments(array $args = []) {@command Billomat GetCreditNotePayments}
- * @method array getCreditNotePayment(array $args = []) {@command Billomat GetCreditNotePayment}
- * @method array createCreditNotePayment(array $args = []) {@command Billomat CreateCreditNotePayment}
- * @method array deleteCreditNotePayment(array $args = []) {@command Billomat DeleteCreditNotePayment}
+ * @method Result getCreditNotePayments(array $args = []) {@command Billomat GetCreditNotePayments}
+ * @method Result getCreditNotePayment(array $args = []) {@command Billomat GetCreditNotePayment}
+ * @method Result createCreditNotePayment(array $args = []) {@command Billomat CreateCreditNotePayment}
+ * @method Result deleteCreditNotePayment(array $args = []) {@command Billomat DeleteCreditNotePayment}
  *
  * TEMPLATE RELATED METHODS:
- * @method array getTemplates(array $args = []) {@command Billomat GetTemplate}
- * @method array getTemplate(array $args = []) {@command Billomat GetTemplate}
+ * @method Result getTemplates(array $args = []) {@command Billomat GetTemplate}
+ * @method Result getTemplate(array $args = []) {@command Billomat GetTemplate}
  * @method \Guzzle\Http\Message\Response getTemplatePreview(array $args = []) {@command Billomat GetTemplatePreview}
- * @method array createTemplate(array $args = []) {@command Billomat CreateTemplate}
- * @method array updateTemplate(array $args = []) {@command Billomat UpdateTemplate}
+ * @method Result createTemplate(array $args = []) {@command Billomat CreateTemplate}
+ * @method Result updateTemplate(array $args = []) {@command Billomat UpdateTemplate}
  * @method void deleteTemplate(array $args = []) {@command Billomat DeleteTemplate}
  *
  * ARTICLE PROPERTY RELATED METHODS:
- * @method array getArticleProperties(array $args = []) {@command Billomat GetArticleProperties}
- * @method array getArticleProperty(array $args = []) {@command Billomat GetArticleProperty}
- * @method array createArticleProperty(array $args = []) {@command Billomat CreateArticleProperty}
- * @method array updateArticleProperty(array $args = []) {@command Billomat UpdateArticleProperty}
+ * @method Result getArticleProperties(array $args = []) {@command Billomat GetArticleProperties}
+ * @method Result getArticleProperty(array $args = []) {@command Billomat GetArticleProperty}
+ * @method Result createArticleProperty(array $args = []) {@command Billomat CreateArticleProperty}
+ * @method Result updateArticleProperty(array $args = []) {@command Billomat UpdateArticleProperty}
  * @method void deleteArticleProperty(array $args = []) {@command Billomat DeleteArticleProperty}
  *
  * CLIENT PROPERTY RELATED METHODS:
- * @method array getClientProperties(array $args = []) {@command Billomat GetClientProperties}
- * @method array getClientProperty(array $args = []) {@command Billomat GetClientProperty}
- * @method array createClientProperty(array $args = []) {@command Billomat CreateClientProperty}
- * @method array updateClientProperty(array $args = []) {@command Billomat UpdateClientProperty}
+ * @method Result getClientProperties(array $args = []) {@command Billomat GetClientProperties}
+ * @method Result getClientProperty(array $args = []) {@command Billomat GetClientProperty}
+ * @method Result createClientProperty(array $args = []) {@command Billomat CreateClientProperty}
+ * @method Result updateClientProperty(array $args = []) {@command Billomat UpdateClientProperty}
  * @method void deleteClientProperty(array $args = []) {@command Billomat DeleteClientProperty}
  *
  * USER PROPERTY RELATED METHODS:
- * @method array getUserProperties(array $args = []) {@command Billomat GetUserProperties}
- * @method array getUserProperty(array $args = []) {@command Billomat GetUserProperty}
- * @method array createUserProperty(array $args = []) {@command Billomat CreateUserProperty}
- * @method array updateUserProperty(array $args = []) {@command Billomat UpdateUserProperty}
+ * @method Result getUserProperties(array $args = []) {@command Billomat GetUserProperties}
+ * @method Result getUserProperty(array $args = []) {@command Billomat GetUserProperty}
+ * @method Result createUserProperty(array $args = []) {@command Billomat CreateUserProperty}
+ * @method Result updateUserProperty(array $args = []) {@command Billomat UpdateUserProperty}
  * @method void deleteUserProperty(array $args = []) {@command Billomat DeleteUserProperty}
  *
  * TAX RELATED METHODS:
- * @method array getTaxes(array $args = []) {@command Billomat GetTaxes}
- * @method array getTax(array $args = []) {@command Billomat GetTax}
- * @method array createTax(array $args = []) {@command Billomat CreateTax}
- * @method array updateTax(array $args = []) {@command Billomat UpdateTax}
+ * @method Result getTaxes(array $args = []) {@command Billomat GetTaxes}
+ * @method Result getTax(array $args = []) {@command Billomat GetTax}
+ * @method Result createTax(array $args = []) {@command Billomat CreateTax}
+ * @method Result updateTax(array $args = []) {@command Billomat UpdateTax}
  * @method void deleteTax(array $args = []) {@command Billomat DeleteTax}
  *
  * COUNTRY TAX RELATED METHODS:
- * @method array getCountryTaxes(array $args = []) {@command Billomat GetCountryTaxes}
- * @method array getCountryTax(array $args = []) {@command Billomat GetCountryTax}
- * @method array createCountryTax(array $args = []) {@command Billomat CreateCountryTax}
- * @method array updateCountryTax(array $args = []) {@command Billomat UpdateCountryTax}
+ * @method Result getCountryTaxes(array $args = []) {@command Billomat GetCountryTaxes}
+ * @method Result getCountryTax(array $args = []) {@command Billomat GetCountryTax}
+ * @method Result createCountryTax(array $args = []) {@command Billomat CreateCountryTax}
+ * @method Result updateCountryTax(array $args = []) {@command Billomat UpdateCountryTax}
  * @method void deleteCountryTax(array $args = []) {@command Billomat DeleteCountryTax}
  *
  * REMINDER TEXT RELATED METHODS:
- * @method array getReminderTexts(array $args = []) {@command Billomat GetReminderTexts}
- * @method array getReminderText(array $args = []) {@command Billomat GetReminderText}
- * @method array createReminderText(array $args = []) {@command Billomat CreateReminderText}
- * @method array updateReminderText(array $args = []) {@command Billomat UpdateReminderText}
+ * @method Result getReminderTexts(array $args = []) {@command Billomat GetReminderTexts}
+ * @method Result getReminderText(array $args = []) {@command Billomat GetReminderText}
+ * @method Result createReminderText(array $args = []) {@command Billomat CreateReminderText}
+ * @method Result updateReminderText(array $args = []) {@command Billomat UpdateReminderText}
  * @method void deleteReminderText(array $args = []) {@command Billomat DeleteReminderText}
  *
  * EMAIL TEMPLATE RELATED METHODS:
- * @method array getEmailTemplates(array $args = []) {@command Billomat GetEmailTemplates}
- * @method array getEmailTemplate(array $args = []) {@command Billomat GetEmailTemplate}
- * @method array createEmailTemplate(array $args = []) {@command Billomat CreateEmailTemplate}
- * @method array updateEmailTemplate(array $args = []) {@command Billomat UpdateEmailTemplate}
+ * @method Result getEmailTemplates(array $args = []) {@command Billomat GetEmailTemplates}
+ * @method Result getEmailTemplate(array $args = []) {@command Billomat GetEmailTemplate}
+ * @method Result createEmailTemplate(array $args = []) {@command Billomat CreateEmailTemplate}
+ * @method Result updateEmailTemplate(array $args = []) {@command Billomat UpdateEmailTemplate}
  * @method void deleteEmailTemplate(array $args = []) {@command Billomat DeleteEmailTemplate}
  *
  * USER PROPERTY VALUE RELATED METHODS:
- * @method array getUserPropertyValues(array $args = []) {@command Billomat GetUserPropertyValues}
- * @method array getUserPropertyValue(array $args = []) {@command Billomat GetUserPropertyValue}
- * @method array setUserPropertyValue(array $args = []) {@command Billomat SetUserPropertyValue}
+ * @method Result getUserPropertyValues(array $args = []) {@command Billomat GetUserPropertyValues}
+ * @method Result getUserPropertyValue(array $args = []) {@command Billomat GetUserPropertyValue}
+ * @method Result setUserPropertyValue(array $args = []) {@command Billomat SetUserPropertyValue}
  *
  * SUPPLIER RELATED METHODS
- * @method array getSupplier(array $args = []) {@command Billomat GetSupplier}
- * @method array getSuppliers(array $args = []) {@command Billomat GetSuppliers}
+ * @method Result getSupplier(array $args = []) {@command Billomat GetSupplier}
+ * @method Result getSuppliers(array $args = []) {@command Billomat GetSuppliers}
  *
  * INCOMING INVOICE RELATED METHODS
- * @method array getIncomings(array $args = []) {@command Billomat GetIncomings}
- * @method array getIncomingPdf(array $args = []) {@command Billomat GetIncomingPdf}
- * @method array createIncomingTag(array $args = []) {@command Billomat CreateIncomingTag}
- * @method array createIncomingPayment(array $args = []) {@command Billomat CreateIncomingPayment}
+ * @method Result getIncomings(array $args = []) {@command Billomat GetIncomings}
+ * @method Result getIncomingPdf(array $args = []) {@command Billomat GetIncomingPdf}
+ * @method Result createIncomingTag(array $args = []) {@command Billomat CreateIncomingTag}
+ * @method Result createIncomingPayment(array $args = []) {@command Billomat CreateIncomingPayment}
  *
  * # INBOX RELATED METHODS
- * @method array createIncomingInboxDocument(array $args = []) {@command Billomat CreateIncomingInboxDocument}
+ * @method Result createIncomingInboxDocument(array $args = []) {@command Billomat CreateIncomingInboxDocument}
  *
  * @licence MIT
  */

@@ -87,10 +87,10 @@ abstract class ErrorHandlerMiddleware
             case self::SERVER_DOWN_2:
                 $exception = new TooManyRequestsException($errorName, $statusCode);
                 if ($response->hasHeader('X-Rate-Limit-Remaining')) {
-                    $exception->setRateLimitRemaining((int)(string)$response->getHeader('X-Rate-Limit-Remaining'));
+                    $exception->setRateLimitRemaining((int)$response->getHeader('X-Rate-Limit-Remaining')[0]);
                 }
                 if ($response->hasHeader('X-Rate-Limit-Reset')) {
-                    $exception->setRateLimitReset((int)(string)$response->getHeader('X-Rate-Limit-Reset'));
+                    $exception->setRateLimitReset((int)$response->getHeader('X-Rate-Limit-Reset')[0]);
                 }
                 return $exception;
 
