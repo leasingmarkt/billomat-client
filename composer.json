@@ -1,5 +1,5 @@
 {
-    "name": "vrok/billomat-client",
+    "name": "leasingmarkt/billomat-client",
     "type": "library",
     "license": "MIT",
     "description": "PHP library for interacting with the Billomat REST API",
@@ -8,7 +8,7 @@
         "invoice",
         "billing"
     ],
-    "homepage": "https://github.com/vrok/billomat-client",
+    "homepage": "https://github.com/leasingmarkt/billomat-client",
     "authors": [
         {
             "name": "Andreas Kintzinger",
@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8",
         "ext-curl": "*",
         "guzzlehttp/guzzle": "^7.2.0",
         "guzzlehttp/guzzle-services": "^1.2.0"
