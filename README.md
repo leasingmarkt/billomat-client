@@ -1,6 +1,6 @@
 # A PHP Billomat API Client
 
-[![Latest Stable Version](https://poser.pugx.org/vrok/billomat-client/v/stable.png)](https://packagist.org/packages/vrok/billomat-client) [![License](https://poser.pugx.org/vrok/billomat-client/license.png)](https://packagist.org/packages/vrok/billomat-client)
+[![Latest Stable Version](https://poser.pugx.org/leasingmarkt/billomat-client/v/stable.png)](https://packagist.org/packages/leasingmarkt/billomat-client) [![License](https://poser.pugx.org/vrok/billomat-client/license.png)](https://packagist.org/packages/vrok/billomat-client)
 
 ## Introduction
 
@@ -39,7 +39,7 @@ All methods on the following assets are supported:
 ## Installation via composer
 
 ```sh
-composer require vrok/billomat-client
+composer require leasingmarkt/billomat-client
 ```
 
 ## How to use this

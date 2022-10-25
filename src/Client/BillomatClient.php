@@ -10,6 +10,7 @@ use GuzzleHttp\Command\ResultInterface;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\Response;
 use Phobetor\Billomat\Exception\TooManyRequestsException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -48,7 +49,7 @@ use Psr\Http\Message\ResponseInterface;
  * @method Result createInvoice(array $args = []) {@command Billomat CreateInvoice}
  * @method Result updateInvoice(array $args = []) {@command Billomat UpdateInvoice}
  * @method Result completeInvoice(array $args = []) {@command Billomat CompleteInvoice}
- * @method \Guzzle\Http\Message\Response getInvoicePdf(array $args = []) {@command Billomat GetInvoicePdf}
+ * @method Response getInvoicePdf(array $args = []) {@command Billomat GetInvoicePdf}
  * @method Result signInvoice(array $args = []) {@command Billomat SignInvoice}
  * @method Result sendInvoiceEmail(array $args = []) {@command Billomat SendInvoiceEmail}
  * @method Result cancelInvoice(array $args = []) {@command Billomat CancelInvoice}
@@ -81,7 +82,7 @@ use Psr\Http\Message\ResponseInterface;
  * @method Result createCreditNote(array $args = []) {@command Billomat CreateCreditNote}
  * @method Result updateCreditNote(array $args = []) {@command Billomat UpdateCreditNote}
  * @method Result completeCreditNote(array $args = []) {@command Billomat CompleteCreditNote}
- * @method \Guzzle\Http\Message\Response getCreditNotePdf(array $args = []) {@command Billomat GetCreditNotePdf}
+ * @method Response getCreditNotePdf(array $args = []) {@command Billomat GetCreditNotePdf}
  * @method Result signCreditNote(array $args = []) {@command Billomat SignCreditNote}
  * @method Result sendCreditNoteEmail(array $args = []) {@command Billomat SendCreditNoteEmail}
  * @method void deleteCreditNote(array $args = []) {@command Billomat DeleteCreditNote}
@@ -102,7 +103,7 @@ use Psr\Http\Message\ResponseInterface;
  * TEMPLATE RELATED METHODS:
  * @method Result getTemplates(array $args = []) {@command Billomat GetTemplate}
  * @method Result getTemplate(array $args = []) {@command Billomat GetTemplate}
- * @method \Guzzle\Http\Message\Response getTemplatePreview(array $args = []) {@command Billomat GetTemplatePreview}
+ * @method Response getTemplatePreview(array $args = []) {@command Billomat GetTemplatePreview}
  * @method Result createTemplate(array $args = []) {@command Billomat CreateTemplate}
  * @method Result updateTemplate(array $args = []) {@command Billomat UpdateTemplate}
  * @method void deleteTemplate(array $args = []) {@command Billomat DeleteTemplate}
