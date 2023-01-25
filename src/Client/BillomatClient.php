@@ -3,6 +3,7 @@
 namespace Phobetor\Billomat\Client;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Command\Exception\CommandException;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Result;
@@ -213,7 +214,7 @@ class BillomatClient extends GuzzleClient
         $stack->push(Middleware::mapResponse([$this, 'handleRateLimit']));
         $stack->push(Middleware::mapResponse([ErrorHandlerMiddleware::class, 'handleResponse']));
 
-        $client = new Client(['handler' => $stack]);
+        $client = new Client(['handler' => $stack, 'timeout' => 120]);
         $this->serviceDescription = new Description($this->getServiceDefinition($version));
         parent::__construct($client, $this->serviceDescription);
     }
@@ -244,25 +245,32 @@ class BillomatClient extends GuzzleClient
             try {
                 $result = $this->executeCommand($method, $args[0] ?? []);
             }
-            catch (TooManyRequestsException $e) {
-                $caughtRateLimitException = true;
+            catch (CommandException $ex) {
+                $e = $ex->getPrevious();
+                if ($e instanceof TooManyRequestsException) {
+                    
+                    $caughtRateLimitException = true;
 
-                if (null !== $e->getRateLimitReset()) {
-                    // reset time was found, calculate exact interval to wait
-                    $now = new \DateTime();
-                    $now->setTimezone(new \DateTimeZone('UTC'));
-                    $reset = new \DateTime(sprintf('@%d', $e->getRateLimitReset()));
+                    if (null !== $e->getRateLimitReset()) {
+                        // reset time was found, calculate exact interval to wait
+                        $now = new \DateTime();
+                        $now->setTimezone(new \DateTimeZone('UTC'));
+                        $reset = new \DateTime(sprintf('@%d', $e->getRateLimitReset()));
 
-                    $secondsToWait = $reset->getTimestamp() - $now->getTimestamp() + 1;
+                        $secondsToWait = $reset->getTimestamp() - $now->getTimestamp() + 1;
+                    }
+                    else {
+                        // reset time was not found, best guess 5 minutes.
+                        // if this is too short, the next loop will end here again.
+                        $secondsToWait = 5 * 60;
+                    }
+                    
+                    // sleep until rate limit reset
+                    sleep($secondsToWait);
                 }
                 else {
-                    // reset time was not found, best guess 5 minutes.
-                    // if this is too short, the next loop will end here again.
-                    $secondsToWait = 5 * 60;
+                    throw $e;
                 }
-
-                // sleep until rate limit reset
-                sleep($secondsToWait);
             }
             catch (\Exception $e) {
                 throw $e;
