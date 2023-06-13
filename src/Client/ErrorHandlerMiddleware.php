@@ -66,7 +66,7 @@ abstract class ErrorHandlerMiddleware
         throw $exception;
     }
 
-    protected function createExceptionFromStatusCode(
+    protected static function createExceptionFromStatusCode(
         string $errorName,
         ResponseInterface $response,
         int $statusCode
