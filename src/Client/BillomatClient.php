@@ -269,7 +269,11 @@ class BillomatClient extends GuzzleClient
                     sleep($secondsToWait);
                 }
                 else {
-                    throw $e;
+                    if (null !== $e) {
+                        throw $e;
+                    }
+
+                    throw $ex;
                 }
             }
             catch (\Exception $e) {
