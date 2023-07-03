@@ -245,17 +245,17 @@ class BillomatClient extends GuzzleClient
             try {
                 $result = $this->executeCommand($method, $args[0] ?? []);
             }
-            catch (CommandException $ex) {
-                $e = $ex->getPrevious();
-                if ($e instanceof TooManyRequestsException) {
+            catch (CommandException $commandException) {
+                $originalException = $commandException->getPrevious();
+                if ($originalException instanceof TooManyRequestsException) {
                     
                     $caughtRateLimitException = true;
 
-                    if (null !== $e->getRateLimitReset()) {
+                    if (null !== $originalException->getRateLimitReset()) {
                         // reset time was found, calculate exact interval to wait
                         $now = new \DateTime();
                         $now->setTimezone(new \DateTimeZone('UTC'));
-                        $reset = new \DateTime(sprintf('@%d', $e->getRateLimitReset()));
+                        $reset = new \DateTime(sprintf('@%d', $originalException->getRateLimitReset()));
 
                         $secondsToWait = $reset->getTimestamp() - $now->getTimestamp() + 1;
                     }
@@ -269,11 +269,11 @@ class BillomatClient extends GuzzleClient
                     sleep($secondsToWait);
                 }
                 else {
-                    throw $e;
+                    throw $originalException ?? $commandException;
                 }
             }
-            catch (\Exception $e) {
-                throw $e;
+            catch (\Exception $exception) {
+                throw $exception;
             }
         }
         while ($caughtRateLimitException);
